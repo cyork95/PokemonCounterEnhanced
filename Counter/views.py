@@ -1085,6 +1085,28 @@ def counter_update_view(request, id):
 
 
 def counter_detail_view(request, id, *args, **kwargs):
+    if request.method == 'POST' and 'ui button continue' in request.POST:
+        obj = get_object_or_404(Counter, id=id)
+        context = {
+            'user': obj.user,
+            'pokemon_id': obj.pokemon_id,
+            'pokemon_name': obj.pokemon_name,
+            'pokemon_game': obj.pokemon_game,
+            'count': obj.count,
+            'chance': obj.chance,
+            'chance_string': obj.chance_string,
+            'hunting_method': obj.hunting_method,
+            'binomial_distribution': obj.binomial_distribution,
+            'shiny_charm': obj.shiny_charm,
+            'caught': obj.caught
+        }
+        return render(request, "counter/counter_main.html", context)
+    if request.method == 'POST' and 'ui button list' in request.POST:
+        queryset = Counter.objects.all()  # list of objects
+        context = {
+            "object_list": queryset
+        }
+        return render(request, "counter/counter_list.html", context)
     obj = get_object_or_404(Counter, id=id)
     obj.chance = get_shiny_chance(obj.hunting_method, obj.pokemon_game, obj.count, obj.shiny_charm)
     obj.binomial_distribution = calculate_binomial_distribution(obj.count, obj.chance)
