@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block title %}Hunt Details{% endblock %}
+{% load static %}
+{% block content %}
+    <img src="{% static 'pokemon_shiny_images/' %}{{ pokemon_id }}.png"  alt="{% static 'pokemon_shiny_images/0.png' %}" width=500 height=500>
+    <h1>{{ pokemon_name }}</h1>
+    <h2>{{ count }}</h2>
+    <h3>Pokemon {{ pokemon_game }}</h3>
+    <h3>{{ hunting_method }}</h3>
+    <h3>Binomial Distribution: {{ binomial_distribution }}</h3>
+    <h3>Chance: {{ chance_string }} or {{ chance }}%</h3>
+    <h3>Shiny Charm? {{ shiny_charm }}</h3>
+    <h3>
+        {% if caught%}
+            Caught by: {{ user }}!
+        {% else %}
+            <form  method='POST' class="form"> {% csrf_token %}
+                <button class="ui button continue" name="ui button continue" type="submit" style="height:50px;width:200px">Continue Hunt</button>
+            </form>
+        {% endif %}
+        <form  method='POST' class="form"> {% csrf_token %}
+            <button class="ui button list" name="ui button list" type="submit" style="height:100px;width:200px">Back to List View</button>
+        </form>
+    </h3>
+{% endblock %}

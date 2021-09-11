@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block title %}Create Hunt{% endblock %}
+{% load static %}
+{% block content %}
+    <h1>Create Your Hunt:</h1>
+    <form  method='POST' class="form"> {% csrf_token %}
+        {{ form.as_p }}
+        <button class="ui button create" name="ui button create" type='submit'>Create Run</button>
+    </form >
+
+{% endblock %}

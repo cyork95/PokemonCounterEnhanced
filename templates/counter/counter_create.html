@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block title %}Add Hunt{% endblock %}
+
+{% block content %}
+<form  method='POST' class="form"> {% csrf_token %}
+    {{ form.as_p }}
+    <button class="ui button submit" name="ui button submit" type='submit' value='Save Run'>Save</button>
+</form >
+
+{% endblock %}

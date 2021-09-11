@@ -1,0 +1,9 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/styles.css' %}">
+
+<ul class="sidebar-nav">
+    <li><a href="{% url 'home' %}">Home</a></li>
+    <li><a href="{% url 'counter_choose' %}">Create a Counter!</a></li>
+    <li><a href="{% url 'counter_list' %}">View your counters!</a></li>
+    <li><a href="{% url 'counter_create' %}">Add a previous Hunt!</a></li>
+</ul>

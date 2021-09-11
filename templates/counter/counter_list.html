@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block title %}Your Counters{% endblock %}
+{% block content %}
+    <table id="hunts">
+        <tr>
+            <th>ID</th>
+            <th>Pokemon Name</th>
+            <th>Pokemon Game</th>
+            <th>Caught?</th>
+        </tr>
+        {%  for instance in object_list %}
+            <tr>
+                <td>{{ instance.id }}</td>
+                <td><a href='{{ instance.get_detail_url }}'>{{ instance.pokemon_name }}</a></td>
+                <td>Pokemon {{ instance.pokemon_game }}</td>
+                <td>{% if instance.caught%}Caught!{% endif %}</td>
+            </tr>
+        {% endfor %}
+    </table>
+{% endblock %}
+
+
+
+
+
+
+

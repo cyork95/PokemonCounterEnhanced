@@ -1,0 +1,14 @@
+{%  extends 'base.html' %}
+
+{% block title %}
+    Welcome {{ request.user }}!
+{% endblock %}
+
+{% block content %}
+        <h1>Hello, {{ request.user }}!</h1>
+        <p>Welcome to Pokemon Counter Enhanced, a website developed by <em>Cody York</em>!</p>
+        <p>Currently this site just features a pokemon counter but more features will be added soon!</p>
+        <p>Use the navigation to your left to use the counter!</p>
+{% endblock %}
+
+
