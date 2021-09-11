@@ -10,7 +10,7 @@ class RawCounterForm(forms.Form):
                                    widget=forms.Select(choices=Counter.POKEMON_NAMES))
     pokemon_game = forms.CharField(label="Pokemon Game",
                                    widget=forms.Select(choices=Counter.POKEMON_GAME_CHOICES))
-    count = forms.DecimalField(label="Count", max_digits=10000, decimal_places=0)
+    count = forms.DecimalField(label="Count", max_digits=100, decimal_places=0)
     chance = forms.CharField(label="Current Odds", required=False)
     hunting_method = forms.CharField(label="Hunting Method",
                                      widget=forms.Select(choices=Counter.HUNTING_METHOD_CHOICES))
@@ -40,7 +40,7 @@ class CountCounterForm(forms.Form):
                                    widget=forms.HiddenInput(), required=False)
     pokemon_game = forms.CharField(label="Pokemon Game",
                                    widget=forms.HiddenInput(), required=False)
-    count = forms.DecimalField(label="Count", max_digits=10000, decimal_places=0, widget=forms.HiddenInput(),
+    count = forms.DecimalField(label="Count", max_digits=100, decimal_places=0, widget=forms.HiddenInput(),
                                required=False)
     chance = forms.CharField(label="Current Odds", widget=forms.HiddenInput(), required=False)
     chance_string = forms.CharField(label="Current Odds", widget=forms.HiddenInput(), required=False)
