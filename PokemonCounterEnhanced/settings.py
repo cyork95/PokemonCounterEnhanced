@@ -41,6 +41,7 @@ INSTALLED_APPS = [
 
     # own
     'Counter',
+    'Accounts',
 ]
 
 MIDDLEWARE = [
