@@ -9,6 +9,21 @@
         <p>Welcome to Pokemon Counter Enhanced, a website developed by <em>Cody York</em>!</p>
         <p>Currently this site just features a pokemon counter but more features will be added soon!</p>
         <p>Use the navigation to your left to use the counter!</p>
+        {% if user.is_authenticated %}
+         <form action="{% url 'logout' %}" method="post"> {% csrf_token %}
+             <button class="btn btn-primary btn-sm" type="submit">Log Out</button>
+            </form>
+        {% else %}
+            <form action="{% url 'login' %}" method="get"> {% csrf_token %}
+             <button class="btn btn-primary btn-sm" type="submit">Log In!</button>
+                <p>
+
+                </p>
+            </form>
+            <form action="{% url 'signup' %}" method="get"> {% csrf_token %}
+                <button class="btn btn-primary btn-sm" type="submit">Sign Up!</button>
+            </form>
+        {% endif %}
 {% endblock %}
 
 

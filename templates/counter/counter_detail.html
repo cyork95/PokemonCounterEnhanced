@@ -3,7 +3,7 @@
 {% block title %}Hunt Details{% endblock %}
 {% load static %}
 {% block content %}
-    <img src="{% static 'pokemon_shiny_images/' %}{{ pokemon_id }}.png"  alt="{% static 'pokemon_shiny_images/0.png' %}" width=500 height=500>
+    <img src="{% static 'pokemon_shiny_images/' %}{{ pokemon_id }}.png"  alt="{% static 'pokemon_shiny_images/0.png' %}" width=250 height=250>
     <h1>{{ pokemon_name }}</h1>
     <h2>{{ count }}</h2>
     <h3>Pokemon {{ pokemon_game }}</h3>
@@ -16,14 +16,18 @@
             Caught by: {{ user }}!
         {% else %}
             <form  method='POST' class="form"> {% csrf_token %}
-                <button class="ui button continue" name="ui button continue" type="submit" style="height:50px;width:200px">Continue Hunt</button>
+                <button class="ui button continue" name="ui button continue" type="submit" >Continue Hunt</button>
             <p>
 
             </p>
             </form>
         {% endif %}
         <form  method='POST' class="form"> {% csrf_token %}
-            <button class="ui button list" name="ui button list" type="submit" style="height:100px;width:200px">Back to List View</button>
+            <button class="ui button list" name="ui button list" type="submit">Back to List</button>
+            <p>
+
+            </p>
+            <button class="ui button delete" name="ui button delete" type="submit">Delete?</button>
         </form>
     </h3>
 {% endblock %}

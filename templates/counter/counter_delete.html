@@ -1,11 +1,24 @@
 {% extends 'base.html' %}
-
+{% block title %}Delete Hunt?{% endblock %}
 {% block content %}
 
 
 <form action='.' method='POST'>{% csrf_token %}
-    <h1>Do you want to delete the pokemon counter for "{{ object.pokemon_name }}"?</h1>
-    <p><input type='submit' value='Yes' />  <a href='../'>Cancel</a></p>
+    <p>
+
+    </p>
+    <h3>Are you sure you want to delete the pokemon counter for {{ object.pokemon_name }} from {{ object.pokemon_game }} using {{ object.hunting_method }} Method?</h3>
+    <form  method='POST' class="form"> {% csrf_token %}
+        <p>
+
+        </p>
+        <button class="ui button yes" name="ui button yes" type="submit">Yes</button>
+        <p>
+
+        </p>
+        <button class="ui button list" name="ui button list" type="submit">Back to List</button>
+
+    </form>
 
 </form>
 

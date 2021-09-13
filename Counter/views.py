@@ -1014,6 +1014,7 @@ def counter_view(request, id, *args, **kwargs):
         obj.caught = True
         obj.save()
         return redirect('counter_detail', id=obj.id)
+
     obj = get_object_or_404(Counter, id=id)
     print(obj.hunting_method, obj.pokemon_game, obj.count, obj.shiny_charm)
     obj.chance = get_shiny_chance(obj.hunting_method, obj.pokemon_game, obj.count, obj.shiny_charm)
@@ -1063,7 +1064,6 @@ def counter_create_view(request):
             form.cleaned_data['pokemon_id'] = int(POKEDEX_NUMBER_LOOKUP[form.cleaned_data.get('pokemon_name')])
             form.cleaned_data['user'] = request.user.get_username()
             form.cleaned_data.values()
-            print(form.cleaned_data)
             Counter.objects.create(**form.cleaned_data)
         else:
             print(form.errors)
@@ -1086,27 +1086,11 @@ def counter_update_view(request, id):
 
 def counter_detail_view(request, id, *args, **kwargs):
     if request.method == 'POST' and 'ui button continue' in request.POST:
-        obj = get_object_or_404(Counter, id=id)
-        context = {
-            'user': obj.user,
-            'pokemon_id': obj.pokemon_id,
-            'pokemon_name': obj.pokemon_name,
-            'pokemon_game': obj.pokemon_game,
-            'count': obj.count,
-            'chance': obj.chance,
-            'chance_string': obj.chance_string,
-            'hunting_method': obj.hunting_method,
-            'binomial_distribution': obj.binomial_distribution,
-            'shiny_charm': obj.shiny_charm,
-            'caught': obj.caught
-        }
-        return render(request, "counter/counter_main.html", context)
+        return redirect("counter", id=id)
     if request.method == 'POST' and 'ui button list' in request.POST:
-        queryset = Counter.objects.all()  # list of objects
-        context = {
-            "object_list": queryset
-        }
-        return render(request, "counter/counter_list.html", context)
+        return redirect("counter_list")
+    if request.method == 'POST' and 'ui button delete' in request.POST:
+        return redirect("counter_delete", id=id)
     obj = get_object_or_404(Counter, id=id)
     obj.chance = get_shiny_chance(obj.hunting_method, obj.pokemon_game, obj.count, obj.shiny_charm)
     obj.binomial_distribution = calculate_binomial_distribution(obj.count, obj.chance)
@@ -1136,9 +1120,11 @@ def counter_list_view(request):
 
 def counter_delete_view(request, id):
     obj = get_object_or_404(Counter, id=id)
-    if request.method == "POST":
+    if request.method == "POST" and 'ui button yes' in request.POST:
         obj.delete()
-        return redirect('../../')
+        return redirect("counter_list")
+    if request.method == "POST" and 'ui button list' in request.POST:
+        return redirect("counter_list")
     context = {
         "object": obj
     }
