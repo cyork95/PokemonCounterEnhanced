@@ -1110,7 +1110,7 @@ def counter_detail_view(request, id, *args, **kwargs):
 
 
 def counter_list_view(request):
-    queryset = Counter.objects.all()  # list of objects
+    queryset = Counter.objects.all().filter(user=request.user)
     context = {
         "object_list": queryset
     }
