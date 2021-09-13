@@ -1,17 +1,33 @@
 {% extends 'base.html' %}
 
-{% block title %}Current Hunt{% endblock %}
-
-{% block content %}
-    {% load static %}
-    <img src={% static 'pokemon_shiny_images/' %}{{ pokemon_id }}.png alt="Shiny Image">
+{% block title %}{{ pokemon_name }} Hunt!{% endblock %}
+{% load static %}
+{% block content %} {% csrf_token %}
+    <div style="text-align: center;">
+    <img src="{% static 'pokemon_shiny_images/' %}{{ pokemon_id }}.png"  alt="{% static 'pokemon_shiny_images/0.png' %}" width=300 height=300 style="justify-content: center">
     <h1>{{ pokemon_name }}</h1>
-    <p>
-        {% if caught  != 'False' %} Caught by: {{ user }} in {{ count }} trys!
-            The method used was {{ hunting_method }} and the final binomial distribution was {{ binomial_distribution }}! {% endif %}
-    </p>
-    <p>
-        {% if caught  == 'False' %} Attempted by: {{ user }} with {{ count }} trys! The method being used is
-        {{ hunting_method }}and the binomial distribution is {{ binomial_distribution }}! {% endif %}
-    </p>
+    <h2>{{ count }}</h2>
+    <form  method='POST' class="form"> {% csrf_token %}
+        {{ form.as_p }}
+        <button class="ui button minus" name="ui button minus" type="submit" >-</button> <button class="ui button plus" name="ui button plus" type="submit">+</button>
+    </form >
+        <div>
+         <p>
+
+
+         </p>
+        </div>
+    <h3>Current Chance: {{ chance_string }} or {{ chance }}%</h3>
+    <h3>Current Binomial Distribution: {{ binomial_distribution }}%</h3>
+    <form  method='POST' class="form"> {% csrf_token %}
+    <button class="ui button save" name="ui button save" type="submit" >Save Hunt</button>
+    <div>
+        <p>
+
+
+        </p>
+    </div>
+    <button class="ui button caught" name="ui button caught" type="submit">Caught!</button>
+    </form >
+    </div>
 {% endblock %}

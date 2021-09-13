@@ -1016,7 +1016,6 @@ def counter_view(request, id, *args, **kwargs):
         return redirect('counter_detail', id=obj.id)
 
     obj = get_object_or_404(Counter, id=id)
-    print(obj.hunting_method, obj.pokemon_game, obj.count, obj.shiny_charm)
     obj.chance = get_shiny_chance(obj.hunting_method, obj.pokemon_game, obj.count, obj.shiny_charm)
     obj.binomial_distribution = calculate_binomial_distribution(obj.count, obj.chance)
     obj.chance_string = COUNTER_CHANCE_LOOKUP[str(obj.chance)]
