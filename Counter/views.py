@@ -1268,5 +1268,9 @@ def get_shiny_chance(hunting_method, pokemon_game, count, shiny_charm):
 
 
 def calculate_binomial_distribution(count, chance):
-    binomial_distribution_mass = 0 - binom.logcdf(1, int(count), chance)
+    binomial_distribution_mass = 0
+    if chance == 1:
+        binomial_distribution_mass = 0 - binom.logcdf(1, int(count), chance / 2)
+    else:
+        binomial_distribution_mass = 0 - binom.logcdf(1, int(count), chance)
     return round(binomial_distribution_mass, 2)
