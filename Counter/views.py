@@ -1097,7 +1097,7 @@ def counter_create_view(request):
     if request.method == "POST":
         form = RawCounterForm(request.POST)
         if form.is_valid():
-            form.cleaned_data['pokemon_id'] = int(POKEDEX_NUMBER_LOOKUP[form.cleaned_data.get('pokemon_name')])
+            form.cleaned_data['pokemon_id'] = POKEDEX_NUMBER_LOOKUP[form.cleaned_data.get('pokemon_name')]
             form.cleaned_data['user'] = request.user.get_username()
             form.cleaned_data.values()
             Counter.objects.create(**form.cleaned_data)
