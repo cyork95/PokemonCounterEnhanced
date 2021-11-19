@@ -49,6 +49,8 @@ class Counter(models.Model):
         ('Lets Go Eevee!', 'Pokemon Lets Go Eevee!'),
         ('Sword', 'Pokemon Sword'),
         ('Shield', 'Pokemon Shield'),
+        ('Shining Pearl', 'Shining Pearl'),
+        ('Brilliant Diamond', 'Brilliant Diamond')
     )
     POKEMON_NAMES = (
         ('Bulbasaur', 'Bulbasaur'),

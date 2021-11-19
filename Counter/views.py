@@ -1300,6 +1300,16 @@ def get_shiny_chance(hunting_method, pokemon_game, count, shiny_charm):
                 return 0.146484375
             elif hunting_method == 'Dynamax':
                 return 0.333333333
+    elif pokemon_game == 'Shining Pearl' or pokemon_game == 'Brilliant Diamond':
+        if hunting_method == 'Random Encounters' or hunting_method == 'Soft Resetting':
+            return 0.0732439757
+        elif hunting_method == 'Pokéradar':
+            if count < 40:
+                return 0.0732439757
+            else:
+                return 0.500488281
+        else:
+            return 0.0732439757
     else:
         return 1
 
