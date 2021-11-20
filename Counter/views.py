@@ -1305,11 +1305,11 @@ def get_shiny_chance(hunting_method, pokemon_game, count, shiny_charm):
             return 0.0732439757
         elif hunting_method == 'Pokéradar':
             if count < 40:
-                return 0.0732439757
+                return 0.0244140625
             else:
                 return 0.500488281
         else:
-            return 0.0732439757
+            return 0.0244140625
     else:
         return 1
 
